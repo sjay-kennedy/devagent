@@ -231,15 +231,15 @@ export function AgentExecutionPanel({
             <div
               className={`${elevated.elevated} ${elevated.elevated_paddingComfortable} ${elevated.elevated_bgSuccess} ${styles.agentPanel__manageBanner}`}
             >
-              <strong>Approved (prototype).</strong> In production this would mark the change as
-              ready to merge, open a PR for humans, or keep the agent branch for follow-up review.
+              <strong>Changes kept.</strong> The agent’s proposed updates and preview branch stay in
+              this workspace for you to review, merge, or follow up—nothing was rolled back.
             </div>
           ) : status === 'success' && changeGuardDecision === 'reverted' ? (
             <div
               className={`${elevated.elevated} ${elevated.elevated_paddingComfortable} ${elevated.elevated_bgMuted} ${styles.agentPanel__manageBanner}`}
             >
-              <strong>Reverted (prototype).</strong> In production you would delete the agent
-              branch, close a draft PR, or reset to the previous tip so nothing ships by accident.
+              <strong>Changes discarded.</strong> Rolled back this run’s proposed updates and removed
+              the agent preview branch from the workspace.
             </div>
           ) : null}
         </div>
