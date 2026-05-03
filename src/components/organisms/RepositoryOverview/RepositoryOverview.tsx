@@ -75,6 +75,11 @@ export function RepositoryOverview({
           </span>
         </div>
 
+        <hr
+          className={styles.repositoryOverview__metaRule}
+          aria-hidden="true"
+        />
+
         <p className={styles.repositoryOverview__desc}>{repo.description}</p>
       </header>
 

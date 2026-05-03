@@ -9,7 +9,7 @@
 
 .agentPanel__header {
   padding: 12px 22px;
-  border-bottom: 0.5px solid var(--color-border-tertiary);
+  border-bottom: 1px solid var(--color-border-secondary);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -111,23 +111,26 @@
   border-radius: 6px;
   font-size: 12px;
   font-weight: 500;
+  border: 1px solid var(--color-border-secondary);
 }
 
 .agentPanel__outcome--success {
   background: var(--color-background-success);
   color: var(--color-text-success);
+  border-color: var(--color-text-success);
 }
 
 .agentPanel__outcome--failure {
   background: var(--color-background-danger);
   color: var(--color-text-danger);
+  border-color: var(--color-text-danger);
 }
 
 /* Post-run: approve / revert lives outside the log (still not mixed into log lines). */
 .agentPanel__manage {
   flex-shrink: 0;
   padding: 12px 22px;
-  border-top: 0.5px solid var(--color-border-tertiary);
+  border-top: 1px solid var(--color-border-secondary);
   background: var(--color-background-primary);
 }
 
@@ -184,7 +187,7 @@
   padding: 7px 14px;
   font-size: 12px;
   font-weight: 500;
-  border: 0.5px solid var(--color-border-secondary);
+  border: 1px solid var(--color-border-secondary);
   border-radius: 6px;
   cursor: pointer;
   background: none;
@@ -200,22 +203,24 @@
   line-height: 1.45;
   padding: 8px 10px;
   border-radius: 6px;
+  border: 1px solid var(--color-border-secondary);
 }
 
 .agentPanel__manageBanner--approved {
   background: var(--color-background-success);
   color: var(--color-text-success);
+  border-color: var(--color-text-success);
 }
 
 .agentPanel__manageBanner--reverted {
   background: var(--color-background-secondary);
   color: var(--color-text-secondary);
-  border: 0.5px solid var(--color-border-tertiary);
+  border-color: var(--color-border-secondary);
 }
 
 .agentPanel__footer {
   padding: 10px 22px;
-  border-top: 0.5px solid var(--color-border-tertiary);
+  border-top: 1px solid var(--color-border-secondary);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -229,7 +234,7 @@
   padding: 6px 14px;
   font-size: 12px;
   font-weight: 500;
-  border: 0.5px solid var(--color-border-secondary);
+  border: 1px solid var(--color-border-secondary);
   border-radius: 6px;
   cursor: pointer;
   background: none;

@@ -1,5 +1,6 @@
 .metricCard {
   background: var(--color-background-secondary);
+  border: 1px solid var(--color-border-secondary);
   border-radius: 8px;
   padding: 10px 14px;
 }

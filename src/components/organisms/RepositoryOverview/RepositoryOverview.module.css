@@ -28,7 +28,7 @@
   padding: 2px 8px;
   border-radius: 10px;
   background: var(--color-background-secondary);
-  border: 0.5px solid var(--color-border-secondary);
+  border: 1px solid var(--color-border-secondary);
   color: var(--color-text-secondary);
 }
 
@@ -36,10 +36,18 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 10px;
+  margin-bottom: 0.75rem;
   flex-wrap: wrap;
   font-size: 12px;
   color: var(--color-text-secondary);
+}
+
+.repositoryOverview__metaRule {
+  border: none;
+  border-top: 1px solid var(--color-border-secondary);
+  margin: 0 0 1rem;
+  padding: 0;
+  height: 0;
 }
 
 .repositoryOverview__metaSep {
@@ -76,6 +84,7 @@
 
 .repositoryOverview__chartCard {
   background: var(--color-background-secondary);
+  border: 1px solid var(--color-border-secondary);
   border-radius: 8px;
   padding: 14px 16px;
   margin-bottom: 22px;
@@ -99,7 +108,7 @@
 }
 
 .repositoryOverview__agentSection {
-  border-top: 0.5px solid var(--color-border-tertiary);
+  border-top: 1px solid var(--color-border-secondary);
   padding-top: 20px;
 }
 
