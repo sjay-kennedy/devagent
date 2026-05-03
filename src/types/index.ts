@@ -30,6 +30,8 @@ export interface AgentTask {
 export interface LogScriptEntry {
   level: LogLevel;
   text: string;
+  /** Mock deep link to a failing file or manifest (shown in stream + Details modal). */
+  fileLink?: { href: string; label: string };
 }
 
 /** One rendered line in the agent panel (script line + client-side timestamp). */

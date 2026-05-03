@@ -22,6 +22,19 @@ export function LogLine({ entry }: LogLineProps) {
       <span className={styles.logLine__time}>{entry.ts}</span>
       {PREFIX[entry.level] ?? '   '}
       {entry.text}
+      {entry.fileLink ? (
+        <>
+          {' '}
+          <a
+            href={entry.fileLink.href}
+            className={styles.logLine__link}
+            onClick={(e) => e.preventDefault()}
+            title="Prototype: would open this file in the host or editor."
+          >
+            {entry.fileLink.label}
+          </a>
+        </>
+      ) : null}
     </div>
   );
 }

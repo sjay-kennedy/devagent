@@ -17,9 +17,9 @@
   background: var(--color-background-secondary);
   border: 0.5px solid var(--color-border-primary);
   border-radius: 12px;
-  width: 460px;
+  width: 520px;
   max-width: calc(100% - 32px);
-  max-height: min(480px, 90%);
+  max-height: min(580px, 92%);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -80,6 +80,149 @@
   color: var(--color-text-primary);
 }
 
+.dialog__runBar {
+  padding: 10px 20px 12px;
+  border-bottom: 0.5px solid var(--color-border-tertiary);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--color-background-primary);
+}
+
+.dialog__runRow {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.dialog__runId {
+  font-size: 11px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  color: var(--color-text-primary);
+  background: var(--color-background-secondary);
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 0.5px solid var(--color-border-tertiary);
+}
+
+.dialog__shareRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.dialog__shareUrl {
+  font-size: 10px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  color: var(--color-text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
+}
+
+.dialog__iconBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+  padding: 5px 10px;
+  font-size: 11px;
+  font-weight: 500;
+  border: 0.5px solid var(--color-border-secondary);
+  border-radius: 6px;
+  background: var(--color-background-secondary);
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+.dialog__iconBtn:hover {
+  background: var(--color-background-tertiary);
+}
+
+.dialog__externalRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 16px;
+}
+
+.dialog__textLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: var(--color-text-info);
+  text-decoration: none;
+}
+
+.dialog__textLink:hover {
+  text-decoration: underline;
+}
+
+.dialog__toast {
+  font-size: 11px;
+  color: var(--color-text-success);
+}
+
+.dialog__toolbar {
+  flex-shrink: 0;
+  padding: 8px 20px;
+  border-bottom: 0.5px solid var(--color-border-tertiary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  background: var(--color-background-secondary);
+}
+
+.dialog__searchLabel {
+  flex: 1;
+  min-width: 120px;
+}
+
+.dialog__searchInput {
+  width: 100%;
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 0.5px solid var(--color-input-border);
+  background: var(--color-input-background);
+  color: var(--color-input-text);
+}
+
+.dialog__toolbarActions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.dialog__toolbarBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 10px;
+  font-size: 11px;
+  font-weight: 500;
+  border: 0.5px solid var(--color-border-secondary);
+  border-radius: 6px;
+  background: var(--color-background-primary);
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+.dialog__toolbarBtn:hover:not(:disabled) {
+  background: var(--color-background-tertiary);
+}
+
+.dialog__toolbarBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
 .dialog__log {
   flex: 1;
   overflow-y: auto;
@@ -91,6 +234,39 @@
 .dialog__empty {
   font-size: 12px;
   color: var(--color-text-tertiary);
+}
+
+.dialog__rawDetails {
+  flex-shrink: 0;
+  border-top: 0.5px solid var(--color-border-tertiary);
+  border-bottom: 0.5px solid var(--color-border-tertiary);
+  background: var(--color-background-primary);
+}
+
+.dialog__rawSummary {
+  padding: 8px 20px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  list-style: none;
+}
+
+.dialog__rawSummary::-webkit-details-marker {
+  display: none;
+}
+
+.dialog__rawPre {
+  margin: 0;
+  padding: 0 20px 10px;
+  max-height: 120px;
+  overflow: auto;
+  font-size: 10px;
+  line-height: 1.45;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  color: var(--color-text-secondary);
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 .dialog__footer {

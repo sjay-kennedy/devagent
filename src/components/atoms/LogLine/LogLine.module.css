@@ -26,3 +26,20 @@
 .logLine--success {
   color: var(--color-text-success);
 }
+
+.logLine__link {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+.logLine__link:hover {
+  opacity: 0.88;
+}
+
+.logLine__link:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 1px;
+  border-radius: 2px;
+}

@@ -35,7 +35,14 @@ export const LOG_SCRIPTS: Record<string, LogScriptEntry[]> = {
     { level: 'success', text: 'PASS src/routes.test.ts (4 tests)' },
     { level: 'warn', text: 'SKIP src/cache.test.ts — no mocks defined' },
     { level: 'success', text: 'PASS src/middleware.test.ts (8 tests)' },
-    { level: 'error', text: 'FAIL src/upstream.test.ts — timeout 5000ms' },
+    {
+      level: 'error',
+      text: 'FAIL upstream expectations — timeout 5000ms',
+      fileLink: {
+        href: 'https://github.com/acme-corp/api-gateway/blob/main/src/upstream.test.ts#L218',
+        label: 'src/upstream.test.ts:218',
+      },
+    },
     { level: 'warn', text: 'Coverage: 78.4% (target 80%) · 1 failure' },
   ],
   deps: [
@@ -44,7 +51,14 @@ export const LOG_SCRIPTS: Record<string, LogScriptEntry[]> = {
     { level: 'info', text: 'Querying npm registry for updates...' },
     { level: 'warn', text: 'express 4.17.1 → 4.19.2 (security patch)' },
     { level: 'warn', text: 'lodash 4.17.19 → 4.17.21 (low CVE)' },
-    { level: 'error', text: 'axios 0.21.1 → 1.6.0 (BREAKING + CVE-2023-45857)' },
+    {
+      level: 'error',
+      text: 'axios 0.21.1 → 1.6.0 (BREAKING + CVE-2023-45857)',
+      fileLink: {
+        href: 'https://github.com/acme-corp/api-gateway/blob/main/package.json',
+        label: 'package.json',
+      },
+    },
     { level: 'info', text: 'Generating upgrade PR with migration notes...' },
     { level: 'success', text: 'Audit complete. 3 updates recommended.' },
   ],
