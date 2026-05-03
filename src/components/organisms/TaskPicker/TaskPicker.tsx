@@ -26,7 +26,7 @@ export function TaskPicker({
         onClick={onBack}
       >
         <ChevronLeft size={14} aria-hidden />
-        Back to overview
+        Back to Overview
       </button>
 
       <h2 id="task-picker-title" className={styles.taskPicker__title}>

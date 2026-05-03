@@ -124,7 +124,7 @@ export function RepositoryOverview({
           onClick={onRunTask}
         >
           <Play size={13} aria-hidden />
-          Run agent task
+          Run Agent Task
         </button>
       </div>
     </section>

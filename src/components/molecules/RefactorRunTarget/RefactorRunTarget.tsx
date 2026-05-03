@@ -83,7 +83,7 @@ export function RefactorRunTarget({
       </fieldset>
 
       <button type="button" className={styles.confirmBtn} onClick={onConfirm}>
-        Confirm target &amp; run agent
+        Confirm Target &amp; Run Agent
       </button>
     </div>
   );

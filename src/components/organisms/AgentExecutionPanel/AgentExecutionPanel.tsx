@@ -90,7 +90,7 @@ export function AgentExecutionPanel({
             type="button"
             className={styles.agentPanel__backBtn}
             onClick={onBack}
-            aria-label="Back to overview"
+            aria-label="Back to Overview"
           >
             <ChevronLeft size={14} aria-hidden />
           </button>
@@ -194,7 +194,7 @@ export function AgentExecutionPanel({
                   className={styles.agentPanel__manageBtnSecondary}
                   onClick={onRevertChanges}
                 >
-                  Acknowledge (mock)
+                  Acknowledge (Mock)
                 </button>
               </div>
             </>
@@ -216,14 +216,14 @@ export function AgentExecutionPanel({
                   className={styles.agentPanel__manageBtnPrimary}
                   onClick={onApproveChanges}
                 >
-                  Approve &amp; keep
+                  Approve &amp; Keep
                 </button>
                 <button
                   type="button"
                   className={styles.agentPanel__manageBtnSecondary}
                   onClick={onRevertChanges}
                 >
-                  Revert / discard
+                  Revert / Discard
                 </button>
               </div>
             </>
@@ -260,7 +260,7 @@ export function AgentExecutionPanel({
           className={styles.agentPanel__footerBtn}
           onClick={onDetails}
         >
-          View details
+          View Details
         </button>
         <div className={styles.agentPanel__footerSpacer} />
         {done && (

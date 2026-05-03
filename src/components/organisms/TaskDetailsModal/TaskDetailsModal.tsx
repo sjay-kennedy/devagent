@@ -66,7 +66,7 @@ export function TaskDetailsModal({
             type="button"
             className={styles.dialog__close}
             onClick={onClose}
-            aria-label="Close details"
+            aria-label="Close Details"
           >
             <X size={15} aria-hidden />
           </button>
