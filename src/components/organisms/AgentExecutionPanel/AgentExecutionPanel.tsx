@@ -4,6 +4,7 @@ import type { AgentTask, Repo, AgentStatus, LogEntry } from '../../../types';
 import { StatusBadge } from '../../atoms/StatusBadge/StatusBadge';
 import { Spinner } from '../../atoms/Spinner/Spinner';
 import { LogLine } from '../../atoms/LogLine/LogLine';
+import elevated from '../../_shared/SurfaceCard.module.css';
 import styles from './AgentExecutionPanel.module.css';
 
 /** After a successful "writes to repo" run, whether the user kept or threw away the mock outcome. */
@@ -137,10 +138,10 @@ export function AgentExecutionPanel({
 
         {done && (
           <div
-            className={`${styles.agentPanel__outcome} ${
+            className={`${elevated.elevated} ${elevated.elevated_paddingComfortable} ${elevated.elevated_mt} ${styles.agentPanel__outcome} ${
               status === 'success'
-                ? styles['agentPanel__outcome--success']
-                : styles['agentPanel__outcome--failure']
+                ? elevated.elevated_bgSuccess
+                : elevated.elevated_bgDanger
             }`}
           >
             {status === 'success'
@@ -174,7 +175,7 @@ export function AgentExecutionPanel({
             </>
           ) : status === 'failure' && changeGuardDecision === 'reverted' ? (
             <div
-              className={`${styles.agentPanel__manageBanner} ${styles['agentPanel__manageBanner--reverted']}`}
+              className={`${elevated.elevated} ${elevated.elevated_paddingComfortable} ${elevated.elevated_bgMuted} ${styles.agentPanel__manageBanner}`}
             >
               <strong>Acknowledged.</strong> Mock workspace cleared — nothing would be merged from
               this failed run.
@@ -187,7 +188,9 @@ export function AgentExecutionPanel({
               <p className={styles.agentPanel__manageCopy}>
                 A real refactor (or PR / dep upgrade) would push commits to an integration branch.
                 Example branch name:{' '}
-                <span className={styles.agentPanel__manageBranch}>
+                <span
+                  className={`${elevated.elevated} ${elevated.elevated_paddingChip} ${elevated.elevated_bgSecondary} ${styles.agentPanel__manageBranch}`}
+                >
                   agent/{repo.name}-{task.id}-preview
                 </span>
                 . Use the actions below to simulate how a developer accepts or throws away that
@@ -212,14 +215,14 @@ export function AgentExecutionPanel({
             </>
           ) : status === 'success' && changeGuardDecision === 'approved' ? (
             <div
-              className={`${styles.agentPanel__manageBanner} ${styles['agentPanel__manageBanner--approved']}`}
+              className={`${elevated.elevated} ${elevated.elevated_paddingComfortable} ${elevated.elevated_bgSuccess} ${styles.agentPanel__manageBanner}`}
             >
               <strong>Approved (prototype).</strong> In production this would mark the change as
               ready to merge, open a PR for humans, or keep the agent branch for follow-up review.
             </div>
           ) : status === 'success' && changeGuardDecision === 'reverted' ? (
             <div
-              className={`${styles.agentPanel__manageBanner} ${styles['agentPanel__manageBanner--reverted']}`}
+              className={`${elevated.elevated} ${elevated.elevated_paddingComfortable} ${elevated.elevated_bgMuted} ${styles.agentPanel__manageBanner}`}
             >
               <strong>Reverted (prototype).</strong> In production you would delete the agent
               branch, close a draft PR, or reset to the previous tip so nothing ships by accident.

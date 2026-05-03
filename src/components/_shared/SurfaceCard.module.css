@@ -1,0 +1,48 @@
+/**
+ * Shared elevated panel chrome — repo overview (metrics, chart) + agent run (outcomes, banners, branch chip).
+ * Uses `--color-border-primary` so edges stay visible on both primary panes and the secondary log strip.
+ */
+.elevated {
+  border-radius: 8px;
+  border: 1px solid var(--color-border-primary);
+  box-sizing: border-box;
+}
+
+.elevated_paddingDense {
+  padding: 10px 14px;
+}
+
+.elevated_paddingComfortable {
+  padding: 14px 16px;
+}
+
+.elevated_paddingChip {
+  padding: 4px 8px;
+}
+
+.elevated_bgSecondary {
+  background: var(--color-background-secondary);
+}
+
+.elevated_bgSuccess {
+  background: var(--color-background-success);
+  color: var(--color-text-success);
+}
+
+.elevated_bgDanger {
+  background: var(--color-background-danger);
+  color: var(--color-text-danger);
+}
+
+.elevated_bgMuted {
+  background: var(--color-background-secondary);
+  color: var(--color-text-secondary);
+}
+
+.elevated_mt {
+  margin-top: 12px;
+}
+
+.elevated_mbBlock {
+  margin-bottom: 22px;
+}

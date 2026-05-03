@@ -5,6 +5,7 @@ import { fmtNum } from '../../../utils/format';
 import { healthColor } from '../../../utils/healthColor';
 import { MetricCard } from '../../atoms/MetricCard/MetricCard';
 import { CommitChart } from '../../atoms/CommitChart/CommitChart';
+import elevated from '../../_shared/SurfaceCard.module.css';
 import styles from './RepositoryOverview.module.css';
 
 export interface RepositoryOverviewProps {
@@ -99,7 +100,9 @@ export function RepositoryOverview({
         />
       </div>
 
-      <div className={styles.repositoryOverview__chartCard}>
+      <div
+        className={`${elevated.elevated} ${elevated.elevated_paddingComfortable} ${elevated.elevated_bgSecondary} ${elevated.elevated_mbBlock}`}
+      >
         <div className={styles.repositoryOverview__chartTitle}>
           Commit activity — last 12 weeks
         </div>

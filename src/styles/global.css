@@ -88,8 +88,9 @@
   --color-text-warning: var(--clr-warning-a20);
   --color-text-danger: var(--clr-danger-a20);
 
-  --color-border-primary: var(--clr-surface-a40);
-  --color-border-secondary: var(--clr-surface-a30);
+  /* Borders: lighter steps so card frames read on secondary (e.g. agent log) */
+  --color-border-primary: var(--clr-surface-a50);
+  --color-border-secondary: var(--clr-surface-a40);
   --color-border-tertiary: var(--clr-surface-a20);
   --color-border-info: var(--clr-info-a20);
 
@@ -196,8 +197,8 @@ html[data-theme='light'] {
   --color-text-warning: var(--clr-warning-a0);
   --color-text-danger: var(--clr-danger-a0);
 
-  --color-border-primary: var(--clr-surface-a40);
-  --color-border-secondary: var(--clr-surface-a30);
+  --color-border-primary: var(--clr-surface-a50);
+  --color-border-secondary: var(--clr-surface-a40);
   --color-border-tertiary: var(--clr-surface-a20);
   --color-border-info: var(--clr-info-a0);
 

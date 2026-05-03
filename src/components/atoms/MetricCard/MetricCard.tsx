@@ -1,3 +1,4 @@
+import elevated from '../../_shared/SurfaceCard.module.css';
 import styles from './MetricCard.module.css';
 
 export interface MetricCardProps {
@@ -11,7 +12,9 @@ export interface MetricCardProps {
 /** Single stat tile on the repo overview grid. */
 export function MetricCard({ label, value, sub, valueColor }: MetricCardProps) {
   return (
-    <article className={styles.metricCard}>
+    <article
+      className={`${elevated.elevated} ${elevated.elevated_paddingDense} ${elevated.elevated_bgSecondary}`}
+    >
       <div className={styles.metricCard__label}>{label}</div>
       <div
         className={styles.metricCard__value}
