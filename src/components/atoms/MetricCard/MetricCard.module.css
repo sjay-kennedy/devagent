@@ -1,0 +1,26 @@
+.metricCard {
+  background: var(--color-background-secondary);
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+
+.metricCard__label {
+  font-size: 11px;
+  color: var(--color-text-secondary);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.metricCard__value {
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--color-text-primary);
+}
+
+.metricCard__sub {
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+  margin-top: 2px;
+}

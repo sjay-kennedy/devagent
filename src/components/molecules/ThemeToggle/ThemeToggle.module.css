@@ -1,0 +1,32 @@
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 0.5px solid var(--color-border-secondary);
+  background: var(--color-background-primary);
+  color: var(--color-text-primary);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: var(--color-shadow-raise);
+}
+
+.toggle:hover {
+  background: var(--color-background-secondary);
+}
+
+.toggle:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+.toggle__icon {
+  flex-shrink: 0;
+  color: var(--color-text-secondary);
+}
+
+.toggle__label {
+  user-select: none;
+}

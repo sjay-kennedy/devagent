@@ -1,0 +1,31 @@
+/* Card shell: position relative so TaskDetailsModal overlay is clipped to this panel (tutorial). */
+.root {
+  font-family: system-ui, sans-serif;
+  background: var(--color-background-primary);
+  color: var(--color-text-primary);
+  display: flex;
+  flex-direction: column;
+  height: 580px;
+  max-width: 960px;
+  margin: 24px auto;
+  border-radius: 12px;
+  border: 0.5px solid var(--color-border-tertiary);
+  overflow: hidden;
+  position: relative;
+  box-shadow: var(--color-shadow-card);
+}
+
+.shell {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}

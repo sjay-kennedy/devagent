@@ -1,0 +1,44 @@
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 12px;
+  border: 0.5px solid currentColor;
+}
+
+.statusBadge__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+  animation: da-pulse 1.4s ease-in-out infinite;
+}
+
+.statusBadge--idle {
+  background: var(--color-background-secondary);
+  color: var(--color-text-secondary);
+}
+
+.statusBadge--pending {
+  background: var(--color-background-warning);
+  color: var(--color-text-warning);
+}
+
+.statusBadge--running {
+  background: var(--color-background-info);
+  color: var(--color-text-info);
+}
+
+.statusBadge--success {
+  background: var(--color-background-success);
+  color: var(--color-text-success);
+}
+
+.statusBadge--failure {
+  background: var(--color-background-danger);
+  color: var(--color-text-danger);
+}

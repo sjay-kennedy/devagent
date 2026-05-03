@@ -1,0 +1,136 @@
+.repositoryOverview {
+  flex: 1;
+  overflow-y: auto;
+  padding: 22px 26px;
+}
+
+.repositoryOverview__header {
+  margin-bottom: 18px;
+}
+
+.repositoryOverview__titleRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 5px;
+}
+
+.repositoryOverview__title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+}
+
+.repositoryOverview__ownerBadge {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: var(--color-background-secondary);
+  border: 0.5px solid var(--color-border-secondary);
+  color: var(--color-text-secondary);
+}
+
+.repositoryOverview__meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--color-text-secondary);
+}
+
+.repositoryOverview__metaSep {
+  color: var(--color-border-secondary);
+}
+
+.repositoryOverview__metaItem {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.repositoryOverview__langDot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.repositoryOverview__desc {
+  margin: 0;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  max-width: 480px;
+}
+
+.repositoryOverview__metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.repositoryOverview__chartCard {
+  background: var(--color-background-secondary);
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-bottom: 22px;
+}
+
+.repositoryOverview__chartTitle {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.repositoryOverview__chartAxis {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  font-size: 10px;
+  color: var(--color-text-tertiary);
+}
+
+.repositoryOverview__agentSection {
+  border-top: 0.5px solid var(--color-border-tertiary);
+  padding-top: 20px;
+}
+
+.repositoryOverview__agentTitle {
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: var(--color-text-primary);
+}
+
+.repositoryOverview__agentCopy {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  margin: 0 0 14px;
+  line-height: 1.6;
+}
+
+.repositoryOverview__runBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 18px;
+  font-size: 13px;
+  font-weight: 500;
+  background: var(--color-control-inverse-bg);
+  color: var(--color-control-inverse-fg);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.repositoryOverview__runBtn:hover {
+  opacity: 0.92;
+}

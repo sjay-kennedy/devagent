@@ -1,0 +1,252 @@
+/* Root: column layout — chrome (header/footer) separate from scrollable log (UX rationale). */
+.agentPanel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.agentPanel__header {
+  padding: 12px 22px;
+  border-bottom: 0.5px solid var(--color-border-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.agentPanel__headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.agentPanel__backBtn {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  padding: 4px;
+}
+
+.agentPanel__backBtn:hover {
+  color: var(--color-text-primary);
+}
+
+.agentPanel__titles {
+  min-width: 0;
+}
+
+.agentPanel__taskName {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.agentPanel__context {
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+}
+
+.agentPanel__headerRight {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.agentPanel__progressTrack {
+  height: 2px;
+  background: var(--color-background-secondary);
+  flex-shrink: 0;
+}
+
+.agentPanel__progressFill {
+  height: 100%;
+  transition: width 0.4s ease, background 0.3s;
+}
+
+.agentPanel__progressFill--running {
+  background: var(--color-border-info);
+}
+
+.agentPanel__progressFill--success {
+  background: var(--color-text-success);
+}
+
+.agentPanel__progressFill--failure {
+  background: var(--color-text-danger);
+}
+
+/* Log region: read-only monitoring; actions stay in header/footer. */
+.agentPanel__log {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px 22px;
+  background: var(--color-background-secondary);
+  min-height: 0;
+}
+
+.agentPanel__pendingRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--color-text-secondary);
+}
+
+.agentPanel__cursor {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+  animation: da-pulse 1s ease-in-out infinite;
+  margin-top: 2px;
+}
+
+.agentPanel__outcome {
+  margin-top: 12px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.agentPanel__outcome--success {
+  background: var(--color-background-success);
+  color: var(--color-text-success);
+}
+
+.agentPanel__outcome--failure {
+  background: var(--color-background-danger);
+  color: var(--color-text-danger);
+}
+
+/* Post-run: approve / revert lives outside the log (still not mixed into log lines). */
+.agentPanel__manage {
+  flex-shrink: 0;
+  padding: 12px 22px;
+  border-top: 0.5px solid var(--color-border-tertiary);
+  background: var(--color-background-primary);
+}
+
+.agentPanel__manageTitle {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--color-text-primary);
+}
+
+.agentPanel__manageCopy {
+  font-size: 11px;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  margin-bottom: 10px;
+  max-width: 52ch;
+}
+
+.agentPanel__manageBranch {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  background: var(--color-background-secondary);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.agentPanel__manageActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.agentPanel__manageBtnPrimary {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: var(--color-control-inverse-bg);
+  color: var(--color-control-inverse-fg);
+}
+
+.agentPanel__manageBtnPrimary:hover {
+  opacity: 0.92;
+}
+
+.agentPanel__manageBtnSecondary {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 0.5px solid var(--color-border-secondary);
+  border-radius: 6px;
+  cursor: pointer;
+  background: none;
+  color: var(--color-text-primary);
+}
+
+.agentPanel__manageBtnSecondary:hover {
+  background: var(--color-background-secondary);
+}
+
+.agentPanel__manageBanner {
+  font-size: 12px;
+  line-height: 1.45;
+  padding: 8px 10px;
+  border-radius: 6px;
+}
+
+.agentPanel__manageBanner--approved {
+  background: var(--color-background-success);
+  color: var(--color-text-success);
+}
+
+.agentPanel__manageBanner--reverted {
+  background: var(--color-background-secondary);
+  color: var(--color-text-secondary);
+  border: 0.5px solid var(--color-border-tertiary);
+}
+
+.agentPanel__footer {
+  padding: 10px 22px;
+  border-top: 0.5px solid var(--color-border-tertiary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.agentPanel__footerBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 0.5px solid var(--color-border-secondary);
+  border-radius: 6px;
+  cursor: pointer;
+  background: none;
+  color: var(--color-text-primary);
+}
+
+.agentPanel__footerBtn:disabled {
+  cursor: not-allowed;
+  color: var(--color-text-disabled);
+  border-color: var(--color-border-tertiary);
+}
+
+.agentPanel__footerSpacer {
+  flex: 1;
+}
+
+.agentPanel__footerMeta {
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+}

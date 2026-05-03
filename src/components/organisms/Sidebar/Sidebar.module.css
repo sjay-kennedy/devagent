@@ -1,0 +1,79 @@
+.sidebar {
+  width: 196px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  color: var(--sidebar-text);
+  border-right: 0.5px solid var(--sidebar-border-subtle);
+  background: var(--sidebar-bg);
+}
+
+.sidebar__header {
+  padding: 12px 14px 8px;
+  border-bottom: 0.5px solid var(--sidebar-border-subtle);
+  flex-shrink: 0;
+}
+
+.sidebar__title {
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+  color: var(--sidebar-text-strong);
+}
+
+.sidebar__branch {
+  margin-bottom: 8px;
+  flex-shrink: 0;
+}
+
+.sidebar__branchLabel {
+  display: block;
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--sidebar-text-muted);
+  margin-bottom: 4px;
+}
+
+.sidebar__branchSelect {
+  width: 100%;
+  font-size: 12px;
+  padding: 5px 8px;
+  border-radius: 6px;
+  border: 0.5px solid var(--sidebar-border-input);
+  background: var(--sidebar-bg-elevated);
+  color: var(--sidebar-text);
+  cursor: pointer;
+}
+
+.sidebar__branchSelect:focus {
+  outline: none;
+  border-color: var(--sidebar-focus-ring);
+}
+
+.sidebar__branchSelect option {
+  background: var(--sidebar-bg-elevated);
+  color: var(--sidebar-text);
+}
+
+.sidebar__list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.sidebar__empty {
+  padding: 20px 14px;
+  font-size: 12px;
+  color: var(--sidebar-text-subtle);
+  text-align: center;
+}
+
+.sidebar__footer {
+  padding: 8px 14px;
+  border-top: 0.5px solid var(--sidebar-border-subtle);
+  font-size: 11px;
+  color: var(--sidebar-text-subtle);
+  flex-shrink: 0;
+}

@@ -1,0 +1,28 @@
+.logLine {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  line-height: 1.7;
+  white-space: nowrap;
+}
+
+.logLine__time {
+  color: var(--color-text-tertiary);
+  user-select: none;
+  margin-right: 10px;
+}
+
+.logLine--info {
+  color: var(--color-text-secondary);
+}
+
+.logLine--warn {
+  color: var(--color-text-warning);
+}
+
+.logLine--error {
+  color: var(--color-text-danger);
+}
+
+.logLine--success {
+  color: var(--color-text-success);
+}

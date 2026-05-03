@@ -1,0 +1,33 @@
+.commitChart {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 52px;
+}
+
+.commitChart__bar {
+  flex: 1;
+  min-width: 0;
+  border-radius: 2px 2px 0 0;
+  transition: height 0.3s;
+}
+
+.commitChart__bar--muted {
+  background: var(--color-chart-commit-muted);
+}
+
+.commitChart__bar--recent1 {
+  background: var(--color-chart-commit-1);
+}
+
+.commitChart__bar--recent2 {
+  background: var(--color-chart-commit-2);
+}
+
+.commitChart__bar--recent3 {
+  background: var(--color-chart-commit-3);
+}
+
+.commitChart__bar--recent4 {
+  background: var(--color-chart-commit-4);
+}
