@@ -48,6 +48,9 @@ export default function App() {
   /** For tasks that touch the repo: after success/failure, user approves or discards the mock outcome. */
   const [changeGuardDecision, setChangeGuardDecision] =
     useState<ChangeGuardDecision>(null);
+  /** Refactor task: stay pending until user confirms target in the agent panel. */
+  const [refactorRunTargetConfirmed, setRefactorRunTargetConfirmed] =
+    useState(true);
 
   // Timer ids live in refs so clearing them does not trigger extra renders.
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -124,7 +127,15 @@ export default function App() {
     setLogs([]);
     setProgress(0);
     setView('agent');
-    // After a beat, move to 'running' so the streaming effect mounts and starts the interval.
+    const isRefactor = task.id === 'refactor';
+    setRefactorRunTargetConfirmed(!isRefactor);
+    if (!isRefactor) {
+      timerRef.current = setTimeout(() => setStatus('running'), PENDING_MS);
+    }
+  }
+
+  function confirmRefactorRunTarget() {
+    setRefactorRunTargetConfirmed(true);
     timerRef.current = setTimeout(() => setStatus('running'), PENDING_MS);
   }
 
@@ -135,6 +146,7 @@ export default function App() {
     setStatus('pending');
     setLogs([]);
     setProgress(0);
+    setRefactorRunTargetConfirmed(true);
     timerRef.current = setTimeout(() => setStatus('running'), PENDING_MS);
   }
 
@@ -206,6 +218,7 @@ export default function App() {
                   setProgress(0);
                   setShowModal(false);
                   setChangeGuardDecision(null);
+                  setRefactorRunTargetConfirmed(true);
                 }}
                 onRetry={retryTask}
                 onDetails={() => setShowModal(true)}
@@ -214,6 +227,9 @@ export default function App() {
                 onApproveChanges={() => setChangeGuardDecision('approved')}
                 onRevertChanges={() => setChangeGuardDecision('reverted')}
                 branchContext={branchContext}
+                onBranchContextChange={setBranchContext}
+                refactorRunTargetConfirmed={refactorRunTargetConfirmed}
+                onConfirmRefactorRunTarget={confirmRefactorRunTarget}
               />
             )}
             {showModal && activeTask && (

@@ -5,6 +5,8 @@ import { StatusBadge } from '../../atoms/StatusBadge/StatusBadge';
 import { Spinner } from '../../atoms/Spinner/Spinner';
 import { LogLine } from '../../atoms/LogLine/LogLine';
 import elevated from '../../_shared/SurfaceCard.module.css';
+import { RefactorRunTarget } from '../../molecules/RefactorRunTarget/RefactorRunTarget';
+import type { BranchContextOption } from '../../../data';
 import styles from './AgentExecutionPanel.module.css';
 
 /** After a successful "writes to repo" run, whether the user kept or threw away the mock outcome. */
@@ -26,7 +28,11 @@ export interface AgentExecutionPanelProps {
   onRetry: () => void;
   onDetails: () => void;
   /** Matches sidebar branch context (mock target ref for the run). */
-  branchContext: string;
+  branchContext: BranchContextOption;
+  onBranchContextChange: (value: BranchContextOption) => void;
+  /** Refactor: false until user confirms repo/branch/policy, then parent starts streaming. */
+  refactorRunTargetConfirmed: boolean;
+  onConfirmRefactorRunTarget: () => void;
 }
 
 /**
@@ -47,6 +53,9 @@ export function AgentExecutionPanel({
   onRetry,
   onDetails,
   branchContext,
+  onBranchContextChange,
+  refactorRunTargetConfirmed,
+  onConfirmRefactorRunTarget,
 }: AgentExecutionPanelProps) {
   const logRef = useRef<HTMLDivElement>(null);
 
@@ -57,6 +66,11 @@ export function AgentExecutionPanel({
 
   const canRetry = status === 'success' || status === 'failure';
   const done = status === 'success' || status === 'failure';
+
+  const showRefactorGate =
+    task.id === 'refactor' &&
+    status === 'pending' &&
+    !refactorRunTargetConfirmed;
 
   const fillPct = done ? 100 : progress;
   const fillMod = done
@@ -93,7 +107,9 @@ export function AgentExecutionPanel({
           </div>
         </div>
         <div className={styles.agentPanel__headerRight}>
-          {(status === 'running' || status === 'pending') && <Spinner />}
+          {(status === 'running' || (status === 'pending' && !showRefactorGate)) && (
+            <Spinner />
+          )}
           <StatusBadge status={status} />
         </div>
       </header>
@@ -119,7 +135,16 @@ export function AgentExecutionPanel({
         aria-live="polite"
         aria-relevant="additions"
       >
-        {status === 'pending' && (
+        {showRefactorGate && (
+          <RefactorRunTarget
+            repo={repo}
+            baseBranch={branchContext}
+            onBaseBranchChange={onBranchContextChange}
+            onConfirm={onConfirmRefactorRunTarget}
+          />
+        )}
+
+        {status === 'pending' && !showRefactorGate && (
           <div className={styles.agentPanel__pendingRow}>
             <Spinner />
             Preparing agent workspace…
@@ -185,17 +210,6 @@ export function AgentExecutionPanel({
               <div className={styles.agentPanel__manageTitle}>
                 Manage proposed changes
               </div>
-              <p className={styles.agentPanel__manageCopy}>
-                A real refactor (or PR / dep upgrade) would push commits to an integration branch.
-                Example branch name:{' '}
-                <span
-                  className={`${elevated.elevated} ${elevated.elevated_paddingChip} ${elevated.elevated_bgSecondary} ${styles.agentPanel__manageBranch}`}
-                >
-                  agent/{repo.name}-{task.id}-preview
-                </span>
-                . Use the actions below to simulate how a developer accepts or throws away that
-                work after reading the log.
-              </p>
               <div className={styles.agentPanel__manageActions}>
                 <button
                   type="button"

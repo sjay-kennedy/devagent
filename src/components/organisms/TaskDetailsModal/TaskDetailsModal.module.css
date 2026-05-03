@@ -9,10 +9,16 @@
 }
 
 .dialog {
+  /* Native <dialog> is often absolutely positioned; keep it in the overlay flex flow for centering. */
+  position: relative;
+  inset: auto;
+  margin: 0;
+  padding: 0;
   background: var(--color-background-secondary);
   border: 0.5px solid var(--color-border-primary);
   border-radius: 12px;
   width: 460px;
+  max-width: calc(100% - 32px);
   max-height: min(480px, 90%);
   display: flex;
   flex-direction: column;

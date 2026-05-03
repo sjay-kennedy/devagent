@@ -134,11 +134,6 @@
   max-width: 52ch;
 }
 
-.agentPanel__manageBranch {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 11px;
-}
-
 .agentPanel__manageActions {
   display: flex;
   flex-wrap: wrap;
