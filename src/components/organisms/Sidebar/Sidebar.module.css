@@ -9,7 +9,7 @@
 }
 
 .sidebar__header {
-  padding: 12px 14px 8px;
+  padding: 16px 14px 12px;
   border-bottom: 0.5px solid var(--sidebar-border-subtle);
   flex-shrink: 0;
 }
@@ -61,6 +61,7 @@
 .sidebar__list {
   flex: 1;
   overflow-y: auto;
+  padding-block: 4px;
 }
 
 .sidebar__empty {

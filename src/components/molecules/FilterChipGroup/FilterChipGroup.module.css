@@ -30,6 +30,8 @@
 
 .filterChipGroup--sidebarDark {
   border-bottom-color: var(--sidebar-border-subtle);
+  padding-top: 12px;
+  padding-bottom: 12px;
 }
 
 .filterChipGroup--sidebarDark .filterChipGroup__chip--inactive {
