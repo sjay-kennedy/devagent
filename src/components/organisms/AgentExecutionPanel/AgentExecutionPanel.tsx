@@ -111,6 +111,15 @@ export function AgentExecutionPanel({
             <Spinner />
           )}
           <StatusBadge status={status} />
+          <button
+            type="button"
+            className={styles.agentPanel__headerRetry}
+            onClick={onRetry}
+            disabled={!canRetry}
+          >
+            <RotateCcw size={11} aria-hidden />
+            Retry
+          </button>
         </div>
       </header>
 
@@ -213,7 +222,7 @@ export function AgentExecutionPanel({
               <div className={styles.agentPanel__manageActions}>
                 <button
                   type="button"
-                  className={styles.agentPanel__manageBtnPrimary}
+                  className={styles.agentPanel__manageBtnSecondary}
                   onClick={onApproveChanges}
                 >
                   Approve &amp; Keep
@@ -248,16 +257,7 @@ export function AgentExecutionPanel({
       <footer className={styles.agentPanel__footer}>
         <button
           type="button"
-          className={styles.agentPanel__footerBtn}
-          onClick={onRetry}
-          disabled={!canRetry}
-        >
-          <RotateCcw size={11} aria-hidden />
-          Retry
-        </button>
-        <button
-          type="button"
-          className={styles.agentPanel__footerBtn}
+          className={styles.agentPanel__footerBtnPrimary}
           onClick={onDetails}
         >
           Review Details
