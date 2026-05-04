@@ -4,6 +4,16 @@
  * 2) `--color-*`, `--sidebar-*` — app semantics (map to `--clr-*`).
  * Dark: `:root`. Light: `html[data-theme="light"]` overrides primitives + semantics.
  */
+html {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 *,
 *::before,
 *::after {
@@ -250,7 +260,8 @@ body {
   font-family: system-ui, sans-serif;
   background: var(--color-canvas);
   color: var(--color-text-primary);
-  min-height: 100vh;
+  min-height: 100%;
+  height: 100%;
 }
 
 .sr-only {

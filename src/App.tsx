@@ -20,7 +20,7 @@ import {
   AgentExecutionPanel,
   type ChangeGuardDecision,
 } from './components/organisms/AgentExecutionPanel/AgentExecutionPanel';
-import { TaskDetailsModal } from './components/organisms/TaskDetailsModal/TaskDetailsModal';
+import { TaskDetailsDrawer } from './components/organisms/TaskDetailsDrawer/TaskDetailsDrawer';
 
 /** Milliseconds between appended log lines while status === 'running'. */
 const STREAM_MS = 620;
@@ -165,10 +165,8 @@ export default function App() {
 
   return (
     <div className={appStyles.page}>
-      <div className={appStyles.themeBar}>
-        <ThemeToggle />
-      </div>
       <DevAgentTemplate
+        headerTrailing={<ThemeToggle />}
         sidebar={
           <Sidebar
             repos={filteredRepos}
@@ -233,7 +231,7 @@ export default function App() {
               />
             )}
             {showModal && activeTask && (
-              <TaskDetailsModal
+              <TaskDetailsDrawer
                 repo={selectedRepo}
                 task={activeTask}
                 status={status}
