@@ -105,11 +105,12 @@
   --color-shadow-card: 0 8px 32px rgba(0, 0, 0, 0.55);
   --color-overlay-scrim: color-mix(in srgb, var(--clr-surface-a0) 78%, transparent);
 
-  --color-chart-commit-muted: color-mix(in srgb, var(--clr-surface-a50) 40%, var(--clr-surface-a10));
-  --color-chart-commit-1: color-mix(in srgb, var(--clr-info-a10) 45%, var(--clr-surface-a20));
-  --color-chart-commit-2: color-mix(in srgb, var(--clr-info-a10) 58%, var(--clr-surface-a20));
-  --color-chart-commit-3: color-mix(in srgb, var(--clr-info-a20) 62%, var(--clr-surface-a20));
-  --color-chart-commit-4: color-mix(in srgb, var(--clr-info-a20) 78%, var(--clr-surface-a10));
+  /* Bars on secondary (a20): nudge one step lighter than prior mix for contrast. */
+  --color-chart-commit-muted: color-mix(in srgb, var(--clr-surface-a50) 38%, var(--clr-surface-a30));
+  --color-chart-commit-1: color-mix(in srgb, var(--clr-info-a10) 48%, var(--clr-surface-a30));
+  --color-chart-commit-2: color-mix(in srgb, var(--clr-info-a10) 60%, var(--clr-surface-a30));
+  --color-chart-commit-3: color-mix(in srgb, var(--clr-info-a20) 65%, var(--clr-surface-a30));
+  --color-chart-commit-4: color-mix(in srgb, var(--clr-info-a20) 80%, var(--clr-surface-a30));
 
   --color-control-inverse-bg: var(--clr-primary-a50);
   --color-control-inverse-fg: var(--clr-surface-a0);
@@ -214,11 +215,12 @@ html[data-theme='light'] {
   --color-shadow-card: 0 8px 28px rgba(0, 0, 0, 0.1);
   --color-overlay-scrim: color-mix(in srgb, var(--clr-surface-a90) 52%, transparent);
 
-  --color-chart-commit-muted: color-mix(in srgb, var(--clr-surface-a40) 35%, var(--clr-surface-a10));
-  --color-chart-commit-1: color-mix(in srgb, var(--clr-info-a10) 42%, var(--clr-surface-a20));
-  --color-chart-commit-2: color-mix(in srgb, var(--clr-info-a10) 55%, var(--clr-surface-a20));
-  --color-chart-commit-3: color-mix(in srgb, var(--clr-info-a0) 38%, var(--clr-surface-a20));
-  --color-chart-commit-4: color-mix(in srgb, var(--clr-info-a0) 52%, var(--clr-surface-a10));
+  /* Bars on secondary (a20): nudge one step darker than prior mix for contrast. */
+  --color-chart-commit-muted: color-mix(in srgb, var(--clr-surface-a50) 44%, var(--clr-surface-a20));
+  --color-chart-commit-1: color-mix(in srgb, var(--clr-info-a10) 50%, var(--clr-surface-a30));
+  --color-chart-commit-2: color-mix(in srgb, var(--clr-info-a10) 60%, var(--clr-surface-a30));
+  --color-chart-commit-3: color-mix(in srgb, var(--clr-info-a0) 44%, var(--clr-surface-a30));
+  --color-chart-commit-4: color-mix(in srgb, var(--clr-info-a0) 58%, var(--clr-surface-a30));
 
   --color-control-inverse-bg: var(--clr-surface-a80);
   --color-control-inverse-fg: var(--clr-surface-a0);
