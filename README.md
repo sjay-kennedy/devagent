@@ -2,7 +2,7 @@
 
 ![DevAgent prototype](./docs/readme/screen1.png)
 
-Prototype UI for the Dev Agent task flow (repo sidebar, task picker, mock agent run, and details modal). Everything runs in the browser; there is no backend.
+Prototype UI for the Dev Agent task flow (repo sidebar, task picker, mock agent run, and details modal). Everything runs in the browser; there is no backend. This prototype is based on a first iteration design without stakeholder discussions.
 
 ### UX rationale: step-driven flows, control, and recovery
 
