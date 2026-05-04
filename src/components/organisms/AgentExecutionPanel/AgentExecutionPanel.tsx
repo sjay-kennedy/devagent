@@ -260,7 +260,7 @@ export function AgentExecutionPanel({
           className={styles.agentPanel__footerBtn}
           onClick={onDetails}
         >
-          View Details
+          Review Details
         </button>
         <div className={styles.agentPanel__footerSpacer} />
         {done && (

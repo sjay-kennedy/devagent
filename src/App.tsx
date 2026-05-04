@@ -238,6 +238,7 @@ export default function App() {
                 task={activeTask}
                 status={status}
                 logs={logs}
+                taskTouchesRepository={taskTouchesRepository(activeTask.id)}
                 onClose={closeModal}
               />
             )}

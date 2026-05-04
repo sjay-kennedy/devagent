@@ -10,6 +10,8 @@ export interface TaskDetailsModalProps {
   task: AgentTask;
   status: AgentStatus;
   logs: LogEntry[];
+  /** When true, show a host link to review changed files before approve/merge (refactor, PR, deps). */
+  taskTouchesRepository: boolean;
   onClose: () => void;
 }
 
@@ -55,6 +57,7 @@ export function TaskDetailsModal({
   task,
   status,
   logs,
+  taskTouchesRepository,
   onClose,
 }: TaskDetailsModalProps) {
   const logRef = useRef<HTMLDivElement>(null);
@@ -125,6 +128,7 @@ export function TaskDetailsModal({
 
   const ciHref = `https://github.com/${repo.owner}/${repo.name}/actions/runs/89124031`;
   const prHref = `https://github.com/${repo.owner}/${repo.name}/pull/142`;
+  const diffFilesHref = `${prHref}/files`;
 
   return (
     <div
@@ -135,13 +139,13 @@ export function TaskDetailsModal({
       <dialog
         className={styles.dialog}
         open
-        aria-labelledby="task-details-title"
+        aria-labelledby="review-details-title"
         onClick={(e) => e.stopPropagation()}
       >
         <header className={styles.dialog__header}>
           <div>
-            <div id="task-details-title" className={styles.dialog__title}>
-              Task details
+            <div id="review-details-title" className={styles.dialog__title}>
+              Review details
             </div>
             <div className={styles.dialog__subtitle}>
               {task.name} · {repo.owner}/{repo.name}
@@ -218,6 +222,18 @@ export function TaskDetailsModal({
               <ExternalLink size={12} aria-hidden />
               Draft PR #142
             </a>
+            {taskTouchesRepository ? (
+              <a
+                className={styles.dialog__textLink}
+                href={diffFilesHref}
+                target="_blank"
+                rel="noreferrer"
+                title="Opens in a new tab so you can review diffs alongside this workflow"
+              >
+                <ExternalLink size={12} aria-hidden />
+                Review file diffs
+              </a>
+            ) : null}
           </div>
           {copyHint ? (
             <div className={styles.dialog__toast} role="status">
