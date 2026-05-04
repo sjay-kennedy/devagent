@@ -6,7 +6,7 @@ import {
   useRef,
   useState,
 } from 'react';
-import { Copy, Download, ExternalLink, Link2, X } from 'lucide-react';
+import { Copy, Download, Link2, X } from 'lucide-react';
 import type { Repo, AgentTask, AgentStatus, LogEntry } from '../../../types';
 import { StatusBadge } from '../../atoms/StatusBadge/StatusBadge';
 import { LogLine } from '../../atoms/LogLine/LogLine';
@@ -21,6 +21,8 @@ export interface TaskDetailsDrawerProps {
   taskTouchesRepository: boolean;
   onClose: () => void;
 }
+
+type DrawerTabId = 'logs' | 'ci' | 'pr' | 'diffs';
 
 function mockRunId(taskId: string): string {
   return `da-run-${taskId}-7f3a9c2`;
@@ -70,10 +72,27 @@ export function TaskDetailsDrawer({
   const [logQuery, setLogQuery] = useState('');
   const [copyHint, setCopyHint] = useState<string | null>(null);
   const [entered, setEntered] = useState(false);
+  const [activeTab, setActiveTab] = useState<DrawerTabId>('logs');
 
   const runId = mockRunId(task.id);
   const shareUrl = mockShareUrl(task.id);
   const rawOutput = mockRawToolOutput(task, repo);
+
+  const tabs = useMemo(
+    () => [
+      { id: 'logs' as const, label: 'Logs', enabled: true },
+      { id: 'ci' as const, label: 'CI run', enabled: true },
+      { id: 'pr' as const, label: 'PR draft', enabled: true },
+      { id: 'diffs' as const, label: 'Review file diffs', enabled: taskTouchesRepository },
+    ],
+    [taskTouchesRepository]
+  );
+
+  useEffect(() => {
+    if (activeTab === 'diffs' && !taskTouchesRepository) {
+      setActiveTab('logs');
+    }
+  }, [activeTab, taskTouchesRepository]);
 
   const filteredLogs = useMemo(() => {
     const q = logQuery.trim().toLowerCase();
@@ -92,7 +111,7 @@ export function TaskDetailsDrawer({
   useEffect(() => {
     const el = logRef.current;
     if (el) el.scrollTop = el.scrollHeight;
-  }, [logs, filteredLogs]);
+  }, [logs, filteredLogs, activeTab]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -137,10 +156,6 @@ export function TaskDetailsDrawer({
     URL.revokeObjectURL(url);
     showCopyHint('Download started');
   }, [logs, repo.name, task.id, showCopyHint]);
-
-  const ciHref = `https://github.com/${repo.owner}/${repo.name}/actions/runs/89124031`;
-  const prHref = `https://github.com/${repo.owner}/${repo.name}/pull/142`;
-  const diffFilesHref = `${prHref}/files`;
 
   return (
     <div className={styles.root}>
@@ -218,38 +233,6 @@ export function TaskDetailsDrawer({
               <span>Copy link</span>
             </button>
           </div>
-          <div className={styles.drawer__externalRow}>
-            <a
-              className={styles.drawer__textLink}
-              href={ciHref}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <ExternalLink size={12} aria-hidden />
-              CI run #89124031
-            </a>
-            <a
-              className={styles.drawer__textLink}
-              href={prHref}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <ExternalLink size={12} aria-hidden />
-              Draft PR #142
-            </a>
-            {taskTouchesRepository ? (
-              <a
-                className={styles.drawer__textLink}
-                href={diffFilesHref}
-                target="_blank"
-                rel="noreferrer"
-                title="Opens in a new tab so you can review diffs alongside this workflow"
-              >
-                <ExternalLink size={12} aria-hidden />
-                Review file diffs
-              </a>
-            ) : null}
-          </div>
           {copyHint ? (
             <div className={styles.drawer__toast} role="status">
               {copyHint}
@@ -257,66 +240,161 @@ export function TaskDetailsDrawer({
           ) : null}
         </div>
 
-        <div className={styles.drawer__toolbar}>
-          <label className={styles.drawer__searchLabel}>
-            <span className="sr-only">Filter log</span>
-            <input
-              type="search"
-              className={styles.drawer__searchInput}
-              placeholder="Search in log…"
-              value={logQuery}
-              onChange={(e) => setLogQuery(e.target.value)}
-              autoComplete="off"
-            />
-          </label>
-          <div className={styles.drawer__toolbarActions}>
+        <div className={styles.drawer__tabRow} role="tablist" aria-label="Review details tabs">
+          {tabs.filter((t) => t.enabled).map((tab) => (
             <button
+              key={tab.id}
               type="button"
-              className={styles.drawer__toolbarBtn}
-              onClick={copyTranscript}
-              disabled={logs.length === 0}
-              title="Copy full transcript"
+              role="tab"
+              aria-selected={activeTab === tab.id}
+              aria-controls={`drawer-tab-panel-${tab.id}`}
+              id={`drawer-tab-${tab.id}`}
+              className={`${styles.drawer__tabBtn} ${activeTab === tab.id ? styles.drawer__tabBtnActive : ''}`}
+              onClick={() => setActiveTab(tab.id)}
             >
-              <Copy size={14} aria-hidden />
-              Copy log
+              {tab.label}
             </button>
-            <button
-              type="button"
-              className={styles.drawer__toolbarBtn}
-              onClick={exportTranscript}
-              disabled={logs.length === 0}
-              title="Download transcript as .txt"
-            >
-              <Download size={14} aria-hidden />
-              Export
-            </button>
-          </div>
+          ))}
         </div>
 
-        <div
-          ref={logRef}
-          className={styles.drawer__log}
-          role="region"
-          aria-label="Full log output"
+        <section
+          className={styles.drawer__tabPanel}
+          role="tabpanel"
+          id={`drawer-tab-panel-${activeTab}`}
+          aria-labelledby={`drawer-tab-${activeTab}`}
         >
-          {logs.length === 0 ? (
-            <p className={styles.drawer__empty}>No log output yet.</p>
-          ) : filteredLogs.length === 0 ? (
-            <p className={styles.drawer__empty}>No lines match your search.</p>
-          ) : (
-            filteredLogs.map((entry, i) => (
-              <LogLine
-                key={`${entry.ts}-${i}-${entry.text.slice(0, 32)}`}
-                entry={entry}
-              />
-            ))
-          )}
-        </div>
+          {activeTab === 'logs' ? (
+            <>
+              <div className={styles.drawer__toolbar}>
+                <label className={styles.drawer__searchLabel}>
+                  <span className="sr-only">Filter log</span>
+                  <input
+                    type="search"
+                    className={styles.drawer__searchInput}
+                    placeholder="Search in log..."
+                    value={logQuery}
+                    onChange={(e) => setLogQuery(e.target.value)}
+                    autoComplete="off"
+                  />
+                </label>
+                <div className={styles.drawer__toolbarActions}>
+                  <button
+                    type="button"
+                    className={styles.drawer__toolbarBtn}
+                    onClick={copyTranscript}
+                    disabled={logs.length === 0}
+                    title="Copy full transcript"
+                  >
+                    <Copy size={14} aria-hidden />
+                    Copy log
+                  </button>
+                  <button
+                    type="button"
+                    className={styles.drawer__toolbarBtn}
+                    onClick={exportTranscript}
+                    disabled={logs.length === 0}
+                    title="Download transcript as .txt"
+                  >
+                    <Download size={14} aria-hidden />
+                    Export
+                  </button>
+                </div>
+              </div>
 
-        <details className={styles.drawer__rawDetails}>
-          <summary className={styles.drawer__rawSummary}>Raw tool output (mock)</summary>
-          <pre className={styles.drawer__rawPre}>{rawOutput}</pre>
-        </details>
+              <div
+                ref={logRef}
+                className={styles.drawer__log}
+                role="region"
+                aria-label="Full log output"
+              >
+                {logs.length === 0 ? (
+                  <p className={styles.drawer__empty}>No log output yet.</p>
+                ) : filteredLogs.length === 0 ? (
+                  <p className={styles.drawer__empty}>No lines match your search.</p>
+                ) : (
+                  filteredLogs.map((entry, i) => (
+                    <LogLine
+                      key={`${entry.ts}-${i}-${entry.text.slice(0, 32)}`}
+                      entry={entry}
+                    />
+                  ))
+                )}
+              </div>
+
+              <details className={styles.drawer__rawDetails}>
+                <summary className={styles.drawer__rawSummary}>Raw tool output (mock)</summary>
+                <pre className={styles.drawer__rawPre}>{rawOutput}</pre>
+              </details>
+            </>
+          ) : (
+            <div className={styles.drawer__tabContent}>
+              {activeTab === 'ci' ? (
+                <>
+                  <div className={styles.drawer__tabTitle}>CI run #89124031</div>
+                  <p className={styles.drawer__tabCopy}>
+                    Embedded CI results view (mock) with jobs, failures, and rerun status, all in-drawer.
+                  </p>
+                  <div className={styles.drawer__mockSurface}>
+                    <div className={styles.drawer__mockRow}>
+                      <span>build-and-test</span>
+                      <span className={styles.drawer__mockBadgeFail}>failed</span>
+                    </div>
+                    <div className={styles.drawer__mockRow}>
+                      <span>lint</span>
+                      <span className={styles.drawer__mockBadgePass}>passed</span>
+                    </div>
+                    <div className={styles.drawer__mockRow}>
+                      <span>security-scan</span>
+                      <span className={styles.drawer__mockBadgePass}>passed</span>
+                    </div>
+                  </div>
+                </>
+              ) : activeTab === 'pr' ? (
+                <>
+                  <div className={styles.drawer__tabTitle}>Draft PR #142</div>
+                  <p className={styles.drawer__tabCopy}>
+                    Embedded PR review view (mock) with summary, reviewers, and checklist before merge.
+                  </p>
+                  <div className={styles.drawer__mockSurface}>
+                    <div className={styles.drawer__mockRow}>
+                      <span>Summary</span>
+                      <span>Refactor + dependency updates</span>
+                    </div>
+                    <div className={styles.drawer__mockRow}>
+                      <span>Reviewers</span>
+                      <span>@alice, @carol</span>
+                    </div>
+                    <div className={styles.drawer__mockRow}>
+                      <span>Merge checks</span>
+                      <span>1 failing, 2 passing</span>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className={styles.drawer__tabTitle}>File diff review</div>
+                  <p className={styles.drawer__tabCopy}>
+                    Embedded file diff list (mock) to inspect changed files before approving.
+                  </p>
+                  <div className={styles.drawer__mockSurface}>
+                    <div className={styles.drawer__mockRow}>
+                      <span>src/routes.ts</span>
+                      <span>+42 / -18</span>
+                    </div>
+                    <div className={styles.drawer__mockRow}>
+                      <span>src/upstream.test.ts</span>
+                      <span>+11 / -6</span>
+                    </div>
+                    <div className={styles.drawer__mockRow}>
+                      <span>package.json</span>
+                      <span>+3 / -1</span>
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+          )}
+        </section>
 
         <footer className={styles.drawer__footer}>
           <button
