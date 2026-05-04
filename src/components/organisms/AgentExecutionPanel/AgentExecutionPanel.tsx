@@ -232,7 +232,7 @@ export function AgentExecutionPanel({
                   className={styles.agentPanel__manageBtnSecondary}
                   onClick={onRevertChanges}
                 >
-                  Revert / Discard
+                  Revert &amp; Discard
                 </button>
               </div>
             </>
